@@ -26,7 +26,6 @@ public class PlayerInput : Player
     {
         if (_timeSinceLastAttack <= 0.2f)
         {
-            Debug.Log(_timeSinceLastAttack);
             _timeSinceLastAttack += Time.deltaTime;
         }
         else if (isAttacking)

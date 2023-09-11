@@ -7,7 +7,8 @@ public class BounceBullet : MonoBehaviour
 {
     Rigidbody2D rb2D;
     public int speed;
-    
+    public int livingTime;
+
     private void Awake()
     {
         rb2D = GetComponent<Rigidbody2D>();
@@ -16,11 +17,12 @@ public class BounceBullet : MonoBehaviour
     {
         Vector3 point = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x,
         Input.mousePosition.y, -Camera.main.transform.position.z));
+        point -= transform.position;
         point.z = 0;
-        point.Normalize();// !
+        point.Normalize();
         point = point * speed;
         rb2D.velocity = point;
-        Invoke("Destroy", 5);
+        Invoke("Destroy", livingTime);
     }
 
     

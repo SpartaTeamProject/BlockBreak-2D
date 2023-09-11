@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 _movment = Vector2.zero;//초기화 길게 안쓰려고 이렇게 함
     private Rigidbody2D _rigidbody;
     public Animator spritAnim;
+    int speed = 3;
 
     private void Awake()
     {
@@ -34,9 +35,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void ApllyMovement(Vector2 direction)
     {
-        direction = direction * 5;
-        _rigidbody.velocity = direction;
-
+        transform.position += new Vector3(direction.x,direction.y,0) * Time.deltaTime * speed;
+        if (transform.position.x > 2) { transform.position = new Vector3(2f, transform.position.y, 0); }
+        if (transform.position.x < -2) { transform.position = new Vector3(-2f, transform.position.y, 0); }
+        if (transform.position.y > 2) { transform.position = new Vector3(transform.position.x,2f, 0); }
+        if (transform.position.y < -1.8f) { transform.position = new Vector3(transform.position.x, -1.8f, 0); }
         if (direction.x == 0 && direction.y == 0)
         {
             spritAnim.SetBool("isRun",false);
