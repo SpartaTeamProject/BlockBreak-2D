@@ -12,6 +12,8 @@ public class PlayeraimRotation : MonoBehaviour
 
     private Player _player;
 
+    //けしけしけし
+
     private void Awake()
     {
         _player = GetComponent<Player>();
