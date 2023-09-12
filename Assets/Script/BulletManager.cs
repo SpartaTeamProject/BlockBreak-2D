@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using UnityEngine;
 
 public class BulletManager : MonoBehaviour
 {
     public static BulletManager instance = null;
-    private List<Bullet> bulletPool;
+    private Collection<Bullet> bulletPool;
 
     private void Awake()
     {
@@ -26,10 +27,5 @@ public class BulletManager : MonoBehaviour
     void Update()
     {
         
-    }
-
-    void DisableBullet(Bullet bullet)
-    {
-        bullet.gameObject.SetActive(false);
     }
 }
