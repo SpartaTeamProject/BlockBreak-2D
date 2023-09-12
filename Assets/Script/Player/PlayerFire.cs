@@ -24,14 +24,14 @@ public class PlayerFire : MonoBehaviour
 
     void Fire()
     {
-        Debug.Log("OnFire");
         CreateProjectile();
     }
 
     private void CreateProjectile()
     {
-        GameObject obj = Instantiate(_bullet, _bulletPivot.position, Quaternion.identity);
-        obj.GetComponent<Rigidbody2D>().velocity = _controller.bulletDir.normalized * 5f;
+        Instantiate(_bullet, _bulletPivot.position, Quaternion.identity);
+        //GameObject obj = Instantiate(_bullet, _bulletPivot.position, Quaternion.identity);
+        //bj.GetComponent<Rigidbody2D>().velocity = _controller.bulletDir.normalized;
     }
 
     // Update is called once per frame
