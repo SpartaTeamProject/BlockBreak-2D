@@ -55,7 +55,6 @@ public class Monster : MonoBehaviour
         {
             if (Vector3.Distance(target.transform.position, transform.position) > 1)// 거리가 2이상일때
             {
-
                 rb.velocity = (target.transform.position - transform.position).normalized * speed;
             }
             else
