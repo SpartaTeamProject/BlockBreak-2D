@@ -20,6 +20,7 @@ public class UI_Manager : MonoBehaviour
 
     void Awake()
     {
+        Time.timeScale = 1.0f;
         if (I != null)
         {
             Destroy(gameObject);

@@ -16,11 +16,19 @@ public class Bullet : MonoBehaviour
     [SerializeField] protected Color destinationColor = Color.red;
     [SerializeField] protected float incrementAtk;
     [SerializeField] protected float incrementSpd;
+    [SerializeField] protected float decrementLifeTime;
+
+    protected float _currentSpeed;
+    protected float _currentAtk;
+    protected float _currentHitCount;
+    protected float _currentLifeTime;
     protected Color sourceColor;
 
     protected SpriteRenderer bulletRenderer;
 
     public float Speed { get { return speed; } }
+    public float Atk { get {  return _currentAtk; } }
+    public float CurrentAtk {  get { return _currentAtk; } }
 
     private void Awake()
     {

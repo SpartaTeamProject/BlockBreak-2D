@@ -180,9 +180,10 @@ public class Enemy : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
+        var obj = collision.gameObject;
         if (collision.gameObject.tag == "Bullet")
         {
-            Damage(1);
+            Damage((int)obj.GetComponent<Bullet>()?.CurrentAtk);
         }
     }
 

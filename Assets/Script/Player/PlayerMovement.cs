@@ -11,6 +11,8 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D _rigidbody;
     public Animator spritAnim;
     int speed = 3;
+    float dashPower = 6f;
+    float dashTime = 0.2f;
 
     private void Awake()
     {
@@ -21,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         _player.OnMoveEvent += Move;
+        _player.OnDashEvent += Dash;
     }
 
     private void FixedUpdate()
@@ -30,11 +33,25 @@ public class PlayerMovement : MonoBehaviour
 
     private void Move(Vector2 direction)
     {
+        Debug.Log(_movment.ToString());
         _movment = direction;
+    }
+
+    private void Dash()
+    {
+        _rigidbody.velocity = _movment * dashPower;
+        Invoke("resetVel", dashTime);
+    }
+
+    private void resetVel()
+    {
+        _rigidbody.velocity = _movment;
     }
 
     private void ApllyMovement(Vector2 direction)
     {
+        //_rigidbody.velocity = direction.normalized;
+
         transform.position += new Vector3(direction.x,direction.y,0) * Time.deltaTime * speed;
         if (transform.position.x > 2) { transform.position = new Vector3(2f, transform.position.y, 0); }
         if (transform.position.x < -2) { transform.position = new Vector3(-2f, transform.position.y, 0); }
@@ -53,5 +70,6 @@ public class PlayerMovement : MonoBehaviour
     private void OnDestroy()
     {
         _player.OnMoveEvent -= Move;
+        _player.OnDashEvent -= Dash;
     }
 }

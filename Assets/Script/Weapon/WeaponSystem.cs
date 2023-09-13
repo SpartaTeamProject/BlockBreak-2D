@@ -46,8 +46,8 @@ public class WeaponSystem : MonoBehaviour
         {
             Vector3 weaponPos = BulletPos.position;
             Vector3 weaponScale = BulletPos.localScale * 0.5f;
-            Vector3 spwanPos = new Vector3(weaponPos.x + (weaponScale.x * 0.5f) * bulletDir.x, 
-                                           weaponPos.y + (weaponScale.y * 0.5f) * bulletDir.y);
+            Vector3 spwanPos = new Vector3(weaponPos.x + (weaponScale.x) * bulletDir.x, 
+                                           weaponPos.y + (weaponScale.y) * bulletDir.y);
 
             //GameObject obj = Instantiate(_weapon.Bullet, spwanPos, Quaternion.identity);
             _pool.SpawnBullet(spwanPos, Quaternion.identity, bulletDir);

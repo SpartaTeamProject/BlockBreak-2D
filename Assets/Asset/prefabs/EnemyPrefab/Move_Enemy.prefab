@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5793340841338999351}
   - component: {fileID: 3590305889019715450}
   - component: {fileID: 2199625524447591887}
+  - component: {fileID: 2398487366256961563}
   m_Layer: 0
   m_Name: Move_Enemy
   m_TagString: Monster
@@ -36,7 +37,7 @@ Transform:
   m_Children:
   - {fileID: 7649035911133134495}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8835089158158384692
 SpriteRenderer:
@@ -58,7 +59,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a8d9cdb22d7428f43a7e99776c34074e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -228,6 +229,20 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &2398487366256961563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3761874284200954107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddb019962d138ab42b889fa2a88dae8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _flashColor: {r: 1, g: 1, b: 1, a: 1}
+  _flashTime: 0.25
 --- !u!1 &4484457056159058060
 GameObject:
   m_ObjectHideFlags: 0

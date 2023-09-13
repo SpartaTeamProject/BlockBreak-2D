@@ -168,7 +168,7 @@ GameObject:
   - component: {fileID: 1902675531683785216}
   m_Layer: 0
   m_Name: player
-  m_TagString: Wall
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -187,7 +187,7 @@ Transform:
   m_Children:
   - {fileID: 5561570764889675648}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4584288416229990535
 MonoBehaviour:
@@ -321,7 +321,7 @@ MonoBehaviour:
   playerREN: {fileID: 3195931097687807178}
   armREN: {fileID: 2807039865811308151}
   armPivot: {fileID: 3347434637683547970}
-  cameraSpeed: 1
+  cameraSpeed: 2
   cameraMaxDistance: 10
 --- !u!114 &2033559224332554951
 MonoBehaviour:
@@ -349,8 +349,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPos: {fileID: 1204275263667593610}
   bullet: {fileID: 5905739688945808689, guid: af18c65e055847941a1a3116fb245f4d, type: 3}
-  maxBullet: 3
-  atkCooltime: 0.5
+  maxBullet: 4
+  atkCooltime: 0.2
 --- !u!114 &1902675531683785216
 MonoBehaviour:
   m_ObjectHideFlags: 0
