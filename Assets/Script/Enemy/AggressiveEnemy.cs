@@ -16,7 +16,7 @@ public class AggressiveEnemy : Enemy
     {
         //RandomSound(); //랜덤 일상사운드 재생
 
-        int _random = Random.Range(0, 4); //대기, 두리번, 걷기 (랜덤int 는 최대값 포함안함)
+        int _random = Random.Range(0, 7); //대기, 두리번, 걷기 (랜덤int 는 최대값 포함안함)
 
         if (_random == 0)
             Wait();
@@ -24,7 +24,7 @@ public class AggressiveEnemy : Enemy
             Peek();
         else if (_random == 2)
             TryWalk();
-        else if (_random == 3 && !isAttacking)
+        else if (_random > 3 && !isAttacking)
             Attack();
 
     }

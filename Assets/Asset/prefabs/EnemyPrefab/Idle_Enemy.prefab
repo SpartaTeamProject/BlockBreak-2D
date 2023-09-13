@@ -123,13 +123,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88e200af8e719094d81af9987ba0b676, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _effect: {fileID: 3024758762457132007, guid: 35ff1cebaa89d4d4bb7868196c4b1c1c, type: 3}
   enemyType: 0
   HP: 5
   walkSpeed: 0
   Exp: 0
   attackDamage: 0
-  playerREN: {fileID: 0}
-  anim: {fileID: 1306754065524348630}
   target: {fileID: 0}
   isDead: 0
   walkTime: 0

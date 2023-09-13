@@ -155,19 +155,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd0d3b1f564c8484f80348d3947c27c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _effect: {fileID: 3024758762457132007, guid: 35ff1cebaa89d4d4bb7868196c4b1c1c, type: 3}
   enemyType: 0
   HP: 10
   walkSpeed: 5
   Exp: 0
   attackDamage: 5
-  playerREN: {fileID: 0}
-  anim: {fileID: 7124890922361962789}
   target: {fileID: 0}
   isDead: 0
   walkTime: 5
   waitTime: 2
   bulletSpawnPoint: {fileID: 5280976454654039886}
   bullet: {fileID: 3197274371327692066, guid: 2836b38877dfe474ea6870aafbbeb66f, type: 3}
+  effect: {fileID: 0}
 --- !u!50 &8075473759786619344
 Rigidbody2D:
   serializedVersion: 4
