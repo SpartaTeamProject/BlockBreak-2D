@@ -11,8 +11,12 @@ public class UI_Manager : MonoBehaviour
     public GameObject hpimage;
     public Image image;
     public GameObject player;
+    public GameObject Retrybtn;
+
     public float HP_full;
     public float HP;
+
+    
 
     void Awake()
     {
@@ -41,6 +45,13 @@ public class UI_Manager : MonoBehaviour
     {
         HP -= Time.deltaTime;
         image.fillAmount = (HP / HP_full);
+
+        if (HP <= 0)
+        {
+            gameOver();
+        }
+
+        
     }
     private void OnEnable()
     {
@@ -71,5 +82,12 @@ public class UI_Manager : MonoBehaviour
     public void HP_minus(int XP)
     {
         HP -= XP;
+    }
+
+    public void gameOver()
+    {
+        Retrybtn.SetActive(true);
+        Time.timeScale = 1.0f;
+       
     }
 }
