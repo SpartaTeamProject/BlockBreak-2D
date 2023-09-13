@@ -19,6 +19,6 @@ public class GameoverBtn : MonoBehaviour
 
     public void Gameover()
     {
-        SceneManager.LoadScene("StartScene");
+        SceneManager.LoadScene("StartScene_main");
     }
 }
