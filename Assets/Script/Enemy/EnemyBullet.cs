@@ -7,7 +7,7 @@ public class EnemyBullt : MonoBehaviour
 {
     public float speed;
     public Transform target;
-    public float damage;
+    public int damage = 10;
     private void Awake()
     {
     }

@@ -9,6 +9,13 @@ public class Player : MonoBehaviour
     public event Action<Vector2> OnLookEvent;
     public event Action OnFireEvent;
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "EnemyBullet")
+        {
+            UI_Manager.I.HP_minus(collision.gameObject.GetComponent<EnemyBullt>().damage);
+        }
+    }
     public void CallMoveEvent(Vector2 vector2)
     {
         OnMoveEvent?.Invoke(vector2);
