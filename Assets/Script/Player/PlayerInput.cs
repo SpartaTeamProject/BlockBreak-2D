@@ -62,4 +62,8 @@ public class PlayerInput : Player
     {
         isAttacking = value.isPressed;
     }
+
+    public void OnDisable()
+    {
+    }
 }

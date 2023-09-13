@@ -18,8 +18,9 @@ public class TempBullet : Bullet
     private void Awake()
     {
         rb2D = GetComponent<Rigidbody2D>();
+        bulletRenderer = GetComponent<SpriteRenderer>();
+        //Debug.Log("color1: " + destinationColor.r + "/" + destinationColor.g + "/" + destinationColor.b);
         this.gameObject.SetActive(true);
-        
     }
 
     void Start()
@@ -27,6 +28,7 @@ public class TempBullet : Bullet
         _currentSpeed = speed;
         _currentAtk = atk;
         _currentHitCount = 0;
+        sourceColor = bulletRenderer.color;
     }
 
     void Update()
@@ -57,6 +59,8 @@ public class TempBullet : Bullet
         _direction = Vector3.zero;
         _currentSpeed = speed;
         _currentAtk = atk;
+        _currentHitCount = 0;
+        bulletRenderer.color = sourceColor;
     }
 
     void ReturnToPool()
@@ -72,8 +76,8 @@ public class TempBullet : Bullet
 
         rb2D.velocity = GetReflect(_direction, contact.normal)* _currentSpeed;
 
-        if (collision.gameObject.CompareTag(MONSTER_TAG))
-            this.HitEnemy();
+        //if (collision.gameObject.CompareTag(MONSTER_TAG))
+        HitEnemy(this);
     }
 
     Vector3 GetReflect(Vector3 inDirection, Vector2 normalVec)
@@ -87,17 +91,15 @@ public class TempBullet : Bullet
         return reflecVec;
     }
 
-    void HitEnemy()
+    void HitEnemy(TempBullet target)
     {
         if (_currentHitCount >= maxHitCount)
-            _currentHitCount = 0;
-        else
-            _currentHitCount += (1 / maxHitCount);
+            this._currentHitCount = 0;
+        this._currentHitCount++;
 
-        Color newColor = Color.Lerp(sourceColor, destinationColor, _currentHitCount);
-
-        this.bulletRenderer.color = newColor;
-        this._currentSpeed *= 1.5f;
-        this._currentAtk *= 2f;
+        //Debug.Log("color1: " + bulletRenderer.color.r + "/" + bulletRenderer.color.g + "/" + bulletRenderer.color.b + "/" + bulletRenderer.color.a);
+        bulletRenderer.color = Color.Lerp(sourceColor, destinationColor, _currentHitCount/ maxHitCount);
+        _currentSpeed += (speed*0.2f);
+        _currentAtk += (atk*0.5f);
     }
 }

@@ -804,8 +804,8 @@ MonoBehaviour:
   image: {fileID: 0}
   player: {fileID: 981583817}
   Retrybtn: {fileID: 488462796}
-  HP_full: 15
-  HP: 15
+  HP_full: 1
+  HP: 1
 --- !u!1 &290923226
 GameObject:
   m_ObjectHideFlags: 0

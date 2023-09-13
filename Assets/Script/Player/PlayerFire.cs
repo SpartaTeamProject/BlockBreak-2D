@@ -30,4 +30,9 @@ public class PlayerFire : MonoBehaviour
     {
 
     }
+
+    private void OnDestroy()
+    {
+        _controller.OnFireEvent -= Fire;
+    }
 }

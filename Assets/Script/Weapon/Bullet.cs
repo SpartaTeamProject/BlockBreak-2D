@@ -14,6 +14,8 @@ public class Bullet : MonoBehaviour
     [SerializeField] protected float lifetime;
     [SerializeField] protected int maxHitCount;
     [SerializeField] protected Color destinationColor = Color.red;
+    [SerializeField] protected float incrementAtk;
+    [SerializeField] protected float incrementSpd;
     protected Color sourceColor;
 
     protected SpriteRenderer bulletRenderer;
@@ -23,7 +25,5 @@ public class Bullet : MonoBehaviour
     private void Awake()
     {
         Pool = gameObject.GetComponent<BulletObjectPool>().Pool;
-        bulletRenderer = gameObject.GetComponent<SpriteRenderer>();
-        sourceColor = bulletRenderer.color;
     }
 }

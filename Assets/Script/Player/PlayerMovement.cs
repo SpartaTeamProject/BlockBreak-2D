@@ -49,4 +49,9 @@ public class PlayerMovement : MonoBehaviour
             spritAnim.SetBool("isRun", true);
         }
     }
+
+    private void OnDestroy()
+    {
+        _player.OnMoveEvent -= Move;
+    }
 }

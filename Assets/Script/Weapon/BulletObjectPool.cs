@@ -35,6 +35,7 @@ public class BulletObjectPool : MonoBehaviour
 
     private void Awake()
     {
+        if (_pool != null) _pool.Clear();
         _handler = GetComponent<WeaponSystem>();
     }
 
@@ -71,5 +72,10 @@ public class BulletObjectPool : MonoBehaviour
         obj.gameObject.transform.position = pos;
         obj.gameObject.transform.rotation = quat;
         obj.gameObject.GetComponent<Rigidbody2D>().velocity = inDir * obj.Speed;
+    }
+
+    public void OnDestroy()
+    {
+        _pool = null;
     }
 }

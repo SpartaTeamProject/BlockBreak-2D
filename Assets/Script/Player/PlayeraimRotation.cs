@@ -60,4 +60,9 @@ public class PlayeraimRotation : MonoBehaviour
         center = new Vector3((playerPos.x + mousePos.x)*0.5f, (playerPos.y + mousePos.y)*0.5f, _mainCam.transform.position.z); 
         _mainCam.transform.position = Vector3.Lerp(cameraPos, center, Time.deltaTime * cameraSpeed);
     }
+
+    private void OnDestroy()
+    {
+        _player.OnLookEvent -= OnAim;
+    }
 }

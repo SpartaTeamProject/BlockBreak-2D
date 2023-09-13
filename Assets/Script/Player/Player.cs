@@ -28,4 +28,11 @@ public class Player : MonoBehaviour
     {
         OnFireEvent?.Invoke();
     }
+
+    private void OnDestroy()
+    {
+        OnMoveEvent = null;
+        OnLookEvent = null;
+        OnFireEvent = null;
+    }
 }
