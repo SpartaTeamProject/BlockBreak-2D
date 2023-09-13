@@ -46,12 +46,16 @@ public class UI_Manager : MonoBehaviour
         
     }
 
-    void HP_Add(int XP)
+    public void HP_Add(int XP)
     {
         HP += XP;
+        if (HP_full < HP)
+        {
+            HP = HP_full;
+        }
     }
 
-    void HP_minus(int XP)
+    public void HP_minus(int XP)
     {
         HP -= XP;
     }

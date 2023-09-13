@@ -6,6 +6,7 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
+    public ParticleSystem _effect;
 
     //Enemy Value
     [SerializeField]
@@ -28,7 +29,6 @@ public class Enemy : MonoBehaviour
     private Animator anim;
     public GameObject target;
     NavMeshAgent nav;
-
 
     //State
     protected bool isAction; // 여러 행동이 진행중인지 판별
@@ -69,6 +69,7 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
+        _effect.Play();
         //target = gameManager.I.player
         currentTime = waitTime;
         isAction = true;
@@ -207,7 +208,7 @@ public class Enemy : MonoBehaviour
             {
                 Dead();
                 //switch case / enemy type에 따라 경험치 +
-                Destroy(this.gameObject);
+                Destroy(gameObject);
                 return;
             }
 
@@ -220,6 +221,7 @@ public class Enemy : MonoBehaviour
     {
         if (!isDead)
         {
+            
             Debug.Log("공격");
             isAttacking = true; // 공격상태 ON
             nav.ResetPath(); // 제자리에서 공격하도록 추격정지 (목적지 리셋/네비게이션 내장함수)    
@@ -250,12 +252,13 @@ public class Enemy : MonoBehaviour
     {
         if (HP <= 0)
         {
+            UI_Manager.I.HP_Add(10);
+            Instantiate(_effect,transform.position,Quaternion.identity);// 벡터 값을 입력하면 로테이션 값도 함께 넣어줘야함
             isWalking = false;
             isChasing = false;
             isAttacking = false;
             nav.ResetPath();
             isDead = true;
-
             //사망 사운드 재생
             //anim.SetTrigger("Dead"); // 사망모션 실행        
         }
