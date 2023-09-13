@@ -5,24 +5,29 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance = null;
+    public static GameManager I;
 
-    private void Awake()
+    int level = 0;
+    int Player = 0;
+    int totalScore;
+
+    void Awake()
     {
-        if (instance == null)
-            instance = this;
-        else
-            Destroy(gameObject);
-        DontDestroyOnLoad(gameObject);
+        I = this;
     }
-    
+
     void Start()
     {
-
     }
 
     void Update()
     {
         
+    }
+
+    public void addPlayer(int score)
+    {
+        Player += 1;
+        level = Player / 5;
     }
 }
