@@ -1,33 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
+
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager I;
-
-    int level = 0;
-    int Player = 0;
-    int totalScore;
-
-    void Awake()
-    {
-        I = this;
-    }
-
+    public GameObject Score;
+    public Text timeTxt;
+    float alive = 0f;
     void Start()
     {
     }
 
     void Update()
     {
-        
-    }
 
-    public void addPlayer(int score)
+
+    }
+    public void GameOver()
     {
-        Player += 1;
-        level = Player / 5;
+        alive += Time.deltaTime;
+        timeTxt.text = alive.ToString("N2");
+        Time.timeScale = 0f;
+        Score.SetActive(true);
     }
 }

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c5d5ef5e62d15994d903de5f2c112f7f
+guid: d0d4d623a72df0c4e9dc0edab3f3f4f7
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -106,11 +106,24 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Slime_0
+      name: Skeleton_0
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +137,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1a3fe75ce00a3d548843547cdec433a5
-      internalID: -2044952978
+      spriteID: a3a4466dad99ab34f8c03dbc65e929e8
+      internalID: 1800669965
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Slime_1
+      name: Skeleton_1
       rect:
         serializedVersion: 2
         x: 32
@@ -145,14 +158,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f5410a7bda10c66428cc65f1e5852597
-      internalID: 1076515402
+      spriteID: 71c826ab67a20164d88c12a62c0ff320
+      internalID: -463355034
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Slime_2
+      name: Skeleton_2
       rect:
         serializedVersion: 2
         x: 64
@@ -166,14 +179,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0bd0e3badffa11346ae185ad6a2712d5
-      internalID: -1458246811
+      spriteID: 02dd432451d39fb4e9f7e93a570264cc
+      internalID: 2033202326
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Slime_3
+      name: Skeleton_3
       rect:
         serializedVersion: 2
         x: 96
@@ -187,14 +200,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6724587fc14d94944afb2bfacbae0ddf
-      internalID: 1694239738
+      spriteID: d5ac1095f20310d49922a0b91c888654
+      internalID: -1332281446
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Slime_4
+      name: Skeleton_4
       rect:
         serializedVersion: 2
         x: 128
@@ -208,14 +221,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5b9aac81ef0442e40ab6c84b3dfdc21e
-      internalID: 262218132
+      spriteID: adbf62cb27adaa249b2fac050f69dfd4
+      internalID: 1647800821
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Slime_5
+      name: Skeleton_5
       rect:
         serializedVersion: 2
         x: 160
@@ -229,14 +242,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4cf29af1fd2c67b4b9ef16ec34c41f45
-      internalID: 980664551
+      spriteID: f332b3c3b3f982949b2a65993a16779c
+      internalID: -1222979266
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Slime_6
+      name: Skeleton_6
       rect:
         serializedVersion: 2
         x: 192
@@ -250,14 +263,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a3c1524457488644c915ac68f3e02c7b
-      internalID: 2006661540
+      spriteID: 88971929312a7dc48b94c41901b70620
+      internalID: 188751691
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Slime_7
+      name: Skeleton_7
       rect:
         serializedVersion: 2
         x: 224
@@ -271,14 +284,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f33f5d73efb903044913087d95c65a4a
-      internalID: 1566484224
+      spriteID: 8bbccb68e79000647aae62fe24e0e820
+      internalID: -1937448841
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Slime_8
+      name: Skeleton_8
       rect:
         serializedVersion: 2
         x: 256
@@ -292,14 +305,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6c4a5e1528041444cab12fa36b19c0ea
-      internalID: 414294598
+      spriteID: 62a966f358de5754eb588d7ba6798246
+      internalID: 399884279
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Slime_9
+      name: Skeleton_9
       rect:
         serializedVersion: 2
         x: 288
@@ -313,14 +326,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 375777da2bf9b2947b3e0c55c454013c
-      internalID: -625884718
+      spriteID: e9cf3ccd2714d224a9e8ab38635df0d5
+      internalID: 749078864
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Slime_10
+      name: Skeleton_10
       rect:
         serializedVersion: 2
         x: 320
@@ -334,14 +347,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f431943974ba6804184dfb492b0a68c8
-      internalID: 2135090883
+      spriteID: bf0682c399f572f49a568a1011b1f9f5
+      internalID: -2020882038
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Slime_11
+      name: Skeleton_11
       rect:
         serializedVersion: 2
         x: 352
@@ -355,8 +368,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cfa4856455babfd44bd7d34db203a071
-      internalID: -1281762666
+      spriteID: 1545d1a219efafd4b86916385a947f5c
+      internalID: 1093964558
       vertices: []
       indices: 
       edges: []
@@ -372,18 +385,18 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Slime_0: -2044952978
-      Slime_1: 1076515402
-      Slime_10: 2135090883
-      Slime_11: -1281762666
-      Slime_2: -1458246811
-      Slime_3: 1694239738
-      Slime_4: 262218132
-      Slime_5: 980664551
-      Slime_6: 2006661540
-      Slime_7: 1566484224
-      Slime_8: 414294598
-      Slime_9: -625884718
+      Skeleton_0: 1800669965
+      Skeleton_1: -463355034
+      Skeleton_10: -2020882038
+      Skeleton_11: 1093964558
+      Skeleton_2: 2033202326
+      Skeleton_3: -1332281446
+      Skeleton_4: 1647800821
+      Skeleton_5: -1222979266
+      Skeleton_6: 188751691
+      Skeleton_7: -1937448841
+      Skeleton_8: 399884279
+      Skeleton_9: 749078864
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
