@@ -27,7 +27,6 @@ public class UI_Manager : MonoBehaviour
         }
 
         I = this;
-        DontDestroyOnLoad(gameObject);
     }
 
     void Start()
@@ -53,6 +52,7 @@ public class UI_Manager : MonoBehaviour
 
         
     }
+    /*
     private void OnEnable()
     {
         SceneManager.sceneLoaded += LoadedsceneEvent;
@@ -69,7 +69,8 @@ public class UI_Manager : MonoBehaviour
             Instantiate(player);
         }
     }
-    
+    */
+
     public void HP_Add(int XP)
     {
         HP += XP;
@@ -87,7 +88,6 @@ public class UI_Manager : MonoBehaviour
     public void gameOver()
     {
         Retrybtn.SetActive(true);
-        Time.timeScale = 1.0f;
-       
+        Time.timeScale = 0f;    
     }
 }

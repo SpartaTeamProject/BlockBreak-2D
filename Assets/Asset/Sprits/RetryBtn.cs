@@ -19,6 +19,7 @@ public class RetryBtn : MonoBehaviour
 
     public void ReGame()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene("TestScene");
     }
 }

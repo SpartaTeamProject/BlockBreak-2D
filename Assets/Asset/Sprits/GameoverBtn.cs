@@ -19,6 +19,7 @@ public class GameoverBtn : MonoBehaviour
 
     public void Gameover()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene("StartScene_main");
     }
 }
