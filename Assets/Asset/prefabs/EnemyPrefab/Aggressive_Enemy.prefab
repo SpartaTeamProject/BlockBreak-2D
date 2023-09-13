@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 4448005764892419939}
   m_Layer: 0
   m_Name: Aggressive_Enemy
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -161,13 +161,11 @@ MonoBehaviour:
   walkSpeed: 5
   Exp: 0
   attackDamage: 5
-  target: {fileID: 0}
   isDead: 0
   walkTime: 5
   waitTime: 2
   bulletSpawnPoint: {fileID: 5280976454654039886}
   bullet: {fileID: 3197274371327692066, guid: 2836b38877dfe474ea6870aafbbeb66f, type: 3}
-  effect: {fileID: 0}
 --- !u!50 &8075473759786619344
 Rigidbody2D:
   serializedVersion: 4

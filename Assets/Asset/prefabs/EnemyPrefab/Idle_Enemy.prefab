@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 1179375331985258091}
   m_Layer: 0
   m_Name: Idle_Enemy
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -129,7 +129,6 @@ MonoBehaviour:
   walkSpeed: 0
   Exp: 0
   attackDamage: 0
-  target: {fileID: 0}
   isDead: 0
   walkTime: 0
   waitTime: 2
