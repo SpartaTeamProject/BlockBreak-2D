@@ -11,7 +11,6 @@ public class Monster : MonoBehaviour
     public Animator spritAnim;
     int Hp = 5;
 
-
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();

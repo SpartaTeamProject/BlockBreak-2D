@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using UnityEngine;
 
-public class BulletManager : MonoBehaviour
+public class AudiuoManager : MonoBehaviour
 {
-    public static BulletManager instance = null;
+    public static AudiuoManager instance = null;
     private Collection<Bullet> bulletPool;
 
     private void Awake()
