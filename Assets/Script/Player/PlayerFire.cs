@@ -1,20 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerFire : MonoBehaviour
 {
     private PlayerInput _controller;
-
-    public GameObject _bullet;
-    private Vector2 _aimDir = Vector2.right;
-
-    [SerializeField] private Transform _bulletPivot;
+    private WeaponSystem _weapon;
 
     // Start is called before the first frame update
     void Awake()
     {
         _controller = GetComponent<PlayerInput>();
+        _weapon = GetComponent<WeaponSystem>();
     }
 
     private void Start()
@@ -24,14 +22,7 @@ public class PlayerFire : MonoBehaviour
 
     void Fire()
     {
-        CreateProjectile();
-    }
-
-    private void CreateProjectile()
-    {
-        Instantiate(_bullet, _bulletPivot.position, Quaternion.identity);
-        //GameObject obj = Instantiate(_bullet, _bulletPivot.position, Quaternion.identity);
-        //bj.GetComponent<Rigidbody2D>().velocity = _controller.bulletDir.normalized;
+        _weapon.GetProjectile(_controller.BulletDir);
     }
 
     // Update is called once per frame

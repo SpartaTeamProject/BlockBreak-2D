@@ -50,22 +50,14 @@ public class PlayeraimRotation : MonoBehaviour
     private void TranslateCam(Vector2 newAim)
     {
         Vector3 cameraPos = _mainCam.transform.position;
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        Vector3 mousePos = _mainCam.ScreenToWorldPoint(Input.mousePosition);
+        mousePos = Vector3.ClampMagnitude(mousePos, cameraMaxDistance);
         mousePos.z = _mainCam.transform.position.z;
+
         Vector3 playerPos = _player.transform.position;
 
-        Debug.Log("PlayerPos: " + playerPos.x + " " + playerPos.y);
-        Debug.Log("MousePos: "+mousePos.x + " " + mousePos.y);
-
-        Debug.Log("CameraPos: "+cameraPos.x + " " + cameraPos.y);
-
-        Vector3 offset = new Vector3(cameraMaxDistance, cameraMaxDistance);
-
-        //center = new Vector3((playerPos.x + mousePos.x) / 2, (playerPos.y + mousePos.y) / 2, _mainCam.transform.position.z);
-        center = new Vector3((playerPos.x + mousePos.x) / 2, (playerPos.y + mousePos.y) / 2, _mainCam.transform.position.z);
-
-        Debug.Log("Center: " + center.x + " " + center.y);
-
+        center = new Vector3((playerPos.x + mousePos.x)*0.5f, (playerPos.y + mousePos.y)*0.5f, _mainCam.transform.position.z); 
         _mainCam.transform.position = Vector3.Lerp(cameraPos, center, Time.deltaTime * cameraSpeed);
     }
 }

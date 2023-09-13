@@ -1,72 +1,103 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Pool;
 
-public class TempBullet : MonoBehaviour
+public class TempBullet : Bullet
 {
-    Rigidbody2D rb2D;
-    public int speed;
-    public int livingTime;
+    private Rigidbody2D rb2D;
+    private Vector3 _direction;
+    private float _currentSpeed;
+    private float _currentAtk;
+    private float _currentHitCount;
 
-    private Vector3 direction;
-
-    const string CollisionTag = "Wall";
+    private const string MONSTER_TAG = "Monster";
 
     private void Awake()
     {
         rb2D = GetComponent<Rigidbody2D>();
-    }
-    void Start()
-    {
-        rb2D.velocity *= speed;
-        Invoke("Destroy", livingTime);
+        this.gameObject.SetActive(true);
+        
     }
 
-    private void FixedUpdate()
+    void Start()
     {
-        direction = rb2D.velocity.normalized;
+        _currentSpeed = speed;
+        _currentAtk = atk;
+        _currentHitCount = 0;
     }
 
     void Update()
     {
-        
+
     }
 
+    private void FixedUpdate()
+    {
+        _direction = rb2D.velocity.normalized;
+    }
+
+    // 오브젝트 풀링에 의한 활성화/비활성화
+    void OnEnable()
+    {
+        rb2D.velocity *= _currentSpeed;
+        Invoke("ReturnToPool", lifetime);
+    }
+
+    void OnDisable()
+    {
+        ResetBullet();
+    }
+
+    // Pool 관련 처리
+    void ResetBullet()
+    {
+        _direction = Vector3.zero;
+        _currentSpeed = speed;
+        _currentAtk = atk;
+    }
+
+    void ReturnToPool()
+    {
+        Pool.Release(this);
+    }
+
+    // 충돌 처리
     private void OnCollisionEnter2D(Collision2D collision)
     {
         ContactPoint2D contact = collision.contacts[0];
-        Debug.DrawRay(contact.point, contact.normal, UnityEngine.Color.red);
-        Debug.Log(contact.normal.x + " " + contact.normal.y);
+        //rb2D.velocity = Vector3.Reflect(_direction, contact.normal);
 
-        Vector3 reflecVec2 = Vector3.Reflect(direction, contact.normal);
+        rb2D.velocity = GetReflect(_direction, contact.normal)* _currentSpeed;
 
-        //Debug.DrawRay(contact.point, reflecVec, UnityEngine.Color.yellow);
-        //Debug.DrawRay(contact.point, direction, UnityEngine.Color.magenta);
-
-        rb2D.velocity = GetReflect(direction, contact.normal) * speed;
-        //rb2D.velocity = reflecVec2.normalized * speed;
-    }
-
-    void Destroy()
-    {
-        Destroy(gameObject);
+        if (collision.gameObject.CompareTag(MONSTER_TAG))
+            this.HitEnemy();
     }
 
     Vector3 GetReflect(Vector3 inDirection, Vector2 normalVec)
     {
-        //float factor = -2f * Vector3.Dot(inDirection, normalVec);
-        //return new Vector3(factor * normalVec.x + inDirection.x,
-        //    factor * normalVec.y + inDirection.y,
-        //    factor * normalVec.z + inDirection.z);
         float dotVec = Vector3.Dot(inDirection, normalVec);
         Vector3 projecVec = normalVec * dotVec;
+
         Vector3 reflecVec = -2f* projecVec;
-        reflecVec += direction;
+        reflecVec += _direction;
 
         return reflecVec;
+    }
 
+    void HitEnemy()
+    {
+        if (_currentHitCount >= maxHitCount)
+            _currentHitCount = 0;
+        else
+            _currentHitCount += (1 / maxHitCount);
+
+        Color newColor = Color.Lerp(sourceColor, destinationColor, _currentHitCount);
+
+        this.bulletRenderer.color = newColor;
+        this._currentSpeed *= 1.5f;
+        this._currentAtk *= 2f;
     }
 }

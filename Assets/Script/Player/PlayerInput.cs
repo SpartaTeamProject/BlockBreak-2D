@@ -7,10 +7,14 @@ using UnityEngine.InputSystem;
 public class PlayerInput : Player
 {
     private Camera _camera;
-
     private float _timeSinceLastAttack = float.MaxValue;
-    bool isAttacking = false;
-    public Vector2 bulletDir;
+    private bool isAttacking = false;
+    private float atkCooldown = 0.2f;
+    private Vector3 bulletDir;
+
+    public float AtkCooldown { get { return atkCooldown; } set { atkCooldown = value; } }
+    public Vector3 BulletDir { get { return bulletDir; } set { bulletDir = value; } }
+
 
     private void Awake()
     {
@@ -24,7 +28,7 @@ public class PlayerInput : Player
 
     private void HandleAttackDelay()
     {
-        if (_timeSinceLastAttack <= 0.2f)
+        if (_timeSinceLastAttack <= atkCooldown)
         {
             _timeSinceLastAttack += Time.deltaTime;
         }

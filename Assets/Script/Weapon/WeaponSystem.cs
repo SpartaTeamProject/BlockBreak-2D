@@ -1,37 +1,76 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.XR;
+using UnityEngine.Pool;
 
 public class WeaponSystem : MonoBehaviour
 {
+    private BulletObjectPool _pool;
 
-    public GameObject bullet_pos;
-    public GameObject bullet;
-    public float cooltime;
+    [SerializeField] private Transform bulletPos;
+    [SerializeField] private GameObject bullet;
+    [SerializeField] private int maxBullet;
+    [SerializeField] private float atkCooltime;
 
-    float curtime;
+    private PlayerInput _input;
+    private int _currentBulletCount;
+    private Vector3 bulletDir;
 
+    public GameObject Bullet { get { return bullet; } }
+    public Transform BulletPos { get { return bulletPos; } }
+    public Vector3 BulletDir { get { return bulletDir; } set { bulletDir = value; } }
+    public int CurrentBulletCount { get { return _currentBulletCount; } set {  _currentBulletCount = value; } }
+
+    private void Awake()
+    {
+        _input = GetComponent<PlayerInput>();
+        _pool = GetComponent<BulletObjectPool>();
+    }
 
     void Start()
     {
+        _input.AtkCooldown = this.atkCooltime;
+        _currentBulletCount = 0;
+    }
+
+    private void Update()
+    {
 
     }
 
-    // Update is called once per frame
-    void Update()
+    public void GetProjectile(Vector3 bulletDir)
     {
-        shoot();
-    }
-    void shoot()
-    {
-        if (curtime <= 0)
+        if (isCreate())
         {
-            if (Input.GetMouseButton(0))
-            {
-                Instantiate(bullet, bullet_pos.transform.position, bullet_pos.transform.rotation);
-                curtime = cooltime;
-            }
+            Vector3 weaponPos = BulletPos.position;
+            Vector3 weaponScale = BulletPos.localScale * 0.5f;
+            Vector3 spwanPos = new Vector3(weaponPos.x + (weaponScale.x * 0.5f) * bulletDir.x, 
+                                           weaponPos.y + (weaponScale.y * 0.5f) * bulletDir.y);
+
+            //GameObject obj = Instantiate(_weapon.Bullet, spwanPos, Quaternion.identity);
+            _pool.SpawnBullet(spwanPos, Quaternion.identity, bulletDir);
+            _currentBulletCount++;
         }
-        curtime -= Time.deltaTime;
     }
+
+    public bool isCreate()
+    {
+        Debug.Log(_currentBulletCount);
+        return _currentBulletCount < maxBullet;
+    }
+
+    public GameObject CreateProjectile()
+    {
+        var obj = Instantiate(bullet);
+        return obj;
+    }
+
+    public void DisableProjectile()
+    {
+        _currentBulletCount--;
+    }
+
+
 }
