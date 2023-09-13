@@ -23,9 +23,9 @@ public class Enemy : MonoBehaviour
     protected Vector3 destination; // 목적지
 
     //Need Component
-    public SpriteRenderer playerREN;
-    Rigidbody2D rigid;
-    public Animator anim;
+    private SpriteRenderer spriteRenderer;
+    private Rigidbody2D rigid;
+    private Animator anim;
     public GameObject target;
     NavMeshAgent nav;
 
@@ -62,6 +62,8 @@ public class Enemy : MonoBehaviour
         nav = GetComponent<NavMeshAgent>();
         rigid = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
     }
 
 
@@ -96,27 +98,17 @@ public class Enemy : MonoBehaviour
     {
         if (isWalking)
             nav.SetDestination(destination);
-
-
         //rigid.MovePosition(transform.position + (transform.forward * applySpeed * Time.deltaTime));
         //리지드바디 이동(현재 위치에서 전방으로, 1초당 walkSpeed 수치만큼 이동
 
-        if (rigid.velocity == new Vector2(0, 0))
-        {
-            anim.SetBool("isRun", false);
-        }
-        else
-        {
-            anim.SetBool("isRun", true);
-        }
 
-        if (target.transform.position.x < transform.position.x)
+        if (destination.x < 0)
         {
-            playerREN.flipX = true;
+            spriteRenderer.flipX = true;
         }
         else
         {
-            playerREN.flipX = false;
+            spriteRenderer.flipX = false;
         }
     }
 
@@ -145,7 +137,7 @@ public class Enemy : MonoBehaviour
         nav.ResetPath();
 
         //애니메이션 초기화
-        //anim.SetBool("Walking", isWalking); anim.SetBool("Running", isRunning);
+        anim.SetBool("isRun", false); //anim.SetBool("Running", isRunning);
 
 
         destination.Set(Random.Range(-6f, 6f), Random.Range(-5f, 5f), 0); // 랜덤 목적지 지정
@@ -196,10 +188,10 @@ public class Enemy : MonoBehaviour
     protected void TryWalk()
     {
         isWalking = true;
-        //anim.SetBool("Walking", isWalking);
+        anim.SetBool("isRun", true);
         currentTime = walkTime;
         nav.speed = walkSpeed;
-        Debug.Log("걷기");
+        Debug.Log("걷기");       
     }
 
 
