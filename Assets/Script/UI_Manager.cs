@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UI_Manager : MonoBehaviour
@@ -9,6 +10,7 @@ public class UI_Manager : MonoBehaviour
     public static UI_Manager I;
     public GameObject hpimage;
     public Image image;
+    public GameObject player;
     public GameObject Retrybtn;
 
     public float HP_full;
@@ -18,19 +20,25 @@ public class UI_Manager : MonoBehaviour
 
     void Awake()
     {
-        if (I == null)
+        if (I != null)
         {
-            I = this; //ΩÃ±€≈Ê»≠
+            Destroy(gameObject);
+            return;
         }
-        else
-        {
-            Destroy(gameObject); // æ¿ ¿Ãµø Ω√ ¡ﬂ∫πª˝º∫ πÊ¡ˆ
-        }
+
+        I = this;
+        DontDestroyOnLoad(gameObject);
     }
 
     void Start()
     {
-         image = hpimage.transform.GetComponent<Image>();
+        image = hpimage.transform.GetComponent<Image>();
+        /*
+        if (SceneManager.GetActiveScene().name == "TestScene")
+        {
+            Instantiate(player);
+        }
+        */
     }
 
     void Update()
@@ -45,7 +53,23 @@ public class UI_Manager : MonoBehaviour
 
         
     }
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += LoadedsceneEvent;
+    }
 
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= LoadedsceneEvent;
+    }
+    private void LoadedsceneEvent(Scene scene, LoadSceneMode mode)
+    {
+        if (SceneManager.GetActiveScene().name == "TestScene")
+        {
+            Instantiate(player);
+        }
+    }
+    
     public void HP_Add(int XP)
     {
         HP += XP;
