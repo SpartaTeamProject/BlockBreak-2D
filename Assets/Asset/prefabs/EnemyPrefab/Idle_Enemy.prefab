@@ -15,9 +15,10 @@ GameObject:
   - component: {fileID: 1588251494806682562}
   - component: {fileID: 841797275684780927}
   - component: {fileID: 1179375331985258091}
+  - component: {fileID: -6865297092638862235}
   m_Layer: 0
   m_Name: Idle_Enemy
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36,7 +37,7 @@ Transform:
   m_Children:
   - {fileID: 2710268780109177534}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3583014559191057615
 SpriteRenderer:
@@ -58,7 +59,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a8d9cdb22d7428f43a7e99776c34074e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -129,7 +130,6 @@ MonoBehaviour:
   walkSpeed: 0
   Exp: 0
   attackDamage: 0
-  target: {fileID: 0}
   isDead: 0
   walkTime: 0
   waitTime: 2
@@ -229,6 +229,20 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &-6865297092638862235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 278930031621121303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddb019962d138ab42b889fa2a88dae8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _flashColor: {r: 1, g: 1, b: 1, a: 1}
+  _flashTime: 0.25
 --- !u!1 &2432272664246660236
 GameObject:
   m_ObjectHideFlags: 0

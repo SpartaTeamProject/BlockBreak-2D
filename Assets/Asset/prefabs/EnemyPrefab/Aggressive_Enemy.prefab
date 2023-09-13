@@ -46,9 +46,10 @@ GameObject:
   - component: {fileID: 8075473759786619344}
   - component: {fileID: 7511957249308427120}
   - component: {fileID: 4448005764892419939}
+  - component: {fileID: 4103145221487006750}
   m_Layer: 0
   m_Name: Aggressive_Enemy
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -68,7 +69,7 @@ Transform:
   - {fileID: 7873195180757884063}
   - {fileID: 4238809781909299141}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8955251931206935967
 SpriteRenderer:
@@ -90,7 +91,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a8d9cdb22d7428f43a7e99776c34074e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -161,13 +162,11 @@ MonoBehaviour:
   walkSpeed: 5
   Exp: 0
   attackDamage: 5
-  target: {fileID: 0}
   isDead: 0
   walkTime: 5
   waitTime: 2
   bulletSpawnPoint: {fileID: 5280976454654039886}
   bullet: {fileID: 3197274371327692066, guid: 2836b38877dfe474ea6870aafbbeb66f, type: 3}
-  effect: {fileID: 0}
 --- !u!50 &8075473759786619344
 Rigidbody2D:
   serializedVersion: 4
@@ -262,6 +261,20 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &4103145221487006750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5836513555785481073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddb019962d138ab42b889fa2a88dae8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _flashColor: {r: 1, g: 1, b: 1, a: 1}
+  _flashTime: 0.25
 --- !u!1 &7221687023392334192
 GameObject:
   m_ObjectHideFlags: 0

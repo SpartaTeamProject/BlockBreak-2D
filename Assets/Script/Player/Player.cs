@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     public event Action<Vector2> OnMoveEvent;
     public event Action<Vector2> OnLookEvent;
     public event Action OnFireEvent;
+    public event Action OnDashEvent;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -28,4 +29,15 @@ public class Player : MonoBehaviour
     {
         OnFireEvent?.Invoke();
     }
+    public void CallDashEvent()
+    {
+        OnDashEvent?.Invoke();
+    }
+
+    //private void OnDestroy()
+    //{
+    //    OnMoveEvent = null;
+    //    OnLookEvent = null;
+    //    OnFireEvent = null;
+    //}
 }

@@ -3,14 +3,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Processors;
 
 public class PlayerInput : Player
 {
     private Camera _camera;
-
     private float _timeSinceLastAttack = float.MaxValue;
-    bool isAttacking = false;
-    public Vector2 bulletDir;
+    private float _timeSinceLastDash = float.MaxValue;
+    private bool isAttacking = false;
+    private bool isDashing = false;
+    private float atkCooldown = 0.2f;
+    private float dashCooldown = 1f;
+    private Vector3 bulletDir;
+
+    public float AtkCooldown { get { return atkCooldown; } set { atkCooldown = value; } }
+    public Vector3 BulletDir { get { return bulletDir; } set { bulletDir = value; } }
+
 
     private void Awake()
     {
@@ -20,11 +28,12 @@ public class PlayerInput : Player
     void Update()
     {
         HandleAttackDelay();
+        HandleDashDelay();
     }
 
     private void HandleAttackDelay()
     {
-        if (_timeSinceLastAttack <= 0.2f)
+        if (_timeSinceLastAttack <= atkCooldown)
         {
             _timeSinceLastAttack += Time.deltaTime;
         }
@@ -32,6 +41,19 @@ public class PlayerInput : Player
         {
             _timeSinceLastAttack = 0;
             CallFireEvent();
+        }
+    }
+
+    private void HandleDashDelay()
+    {
+        if (_timeSinceLastDash <= dashCooldown)
+        {
+            _timeSinceLastDash += Time.deltaTime;
+        }
+        else if (isDashing)
+        {
+            _timeSinceLastDash = 0;
+            CallDashEvent();
         }
     }
 
@@ -57,5 +79,10 @@ public class PlayerInput : Player
     void OnFire(InputValue value)
     {
         isAttacking = value.isPressed;
+    }
+
+    void OnDash(InputValue value)
+    {
+        isDashing = value.isPressed;
     }
 }

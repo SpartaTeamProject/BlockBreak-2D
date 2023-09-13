@@ -4,10 +4,19 @@ using UnityEngine;
 
 public class MovingEnemy : Enemy
 {
+    private DamageFlash _damageFlash;
+
     protected override void ReSet()
     {
         base.ReSet();
         RandomAction();
+    }
+
+    public override void Damage(int _dmg)
+    {
+        _damageFlash = GetComponent<DamageFlash>();
+        _damageFlash.CallDamageFlash();
+        base.Damage(_dmg);
     }
 
     //·£´ý Çàµ¿
@@ -24,7 +33,6 @@ public class MovingEnemy : Enemy
             Peek();
         else if (_random == 2)
             TryWalk();
-
     }
 
 
