@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
 {
     public event Action<Vector2> OnMoveEvent;
     public event Action<Vector2> OnLookEvent;
+    public event Action OnFireEvent;
 
     public void CallMoveEvent(Vector2 vector2)
     {
@@ -15,5 +16,9 @@ public class Player : MonoBehaviour
     public void CallLookEvent(Vector2 vector2)
     {
         OnLookEvent?.Invoke(vector2);
+    }
+    public void CallFireEvent()
+    {
+        OnFireEvent?.Invoke();
     }
 }

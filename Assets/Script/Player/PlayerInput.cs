@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,9 +8,31 @@ public class PlayerInput : Player
 {
     private Camera _camera;
 
+    private float _timeSinceLastAttack = float.MaxValue;
+    bool isAttacking = false;
+    public Vector2 bulletDir;
+
     private void Awake()
     {
         _camera = Camera.main;
+    }
+
+    void Update()
+    {
+        HandleAttackDelay();
+    }
+
+    private void HandleAttackDelay()
+    {
+        if (_timeSinceLastAttack <= 0.2f)
+        {
+            _timeSinceLastAttack += Time.deltaTime;
+        }
+        else if (isAttacking)
+        {
+            _timeSinceLastAttack = 0;
+            CallFireEvent();
+        }
     }
 
     void OnMove(InputValue InputVec)
@@ -23,10 +46,16 @@ public class PlayerInput : Player
         Vector2 newAim = InputVec.Get<Vector2>();
         Vector2 worldPos = _camera.ScreenToWorldPoint(newAim);
         newAim = (worldPos - (Vector2)transform.position).normalized;
+        bulletDir = newAim;
 
         if (newAim.magnitude >= .9f)
         {
             CallLookEvent(newAim);
         }
+    }
+
+    void OnFire(InputValue value)
+    {
+        isAttacking = value.isPressed;
     }
 }
