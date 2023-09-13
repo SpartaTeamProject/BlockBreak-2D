@@ -27,7 +27,7 @@ public class Enemy : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rigid;
     private Animator anim;
-    public GameObject target;
+    private GameObject target;
     NavMeshAgent nav;
 
     //State
@@ -70,7 +70,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         _effect.Play();
-        //target = gameManager.I.player
+        target = UI_Manager.I.player;
         currentTime = waitTime;
         isAction = true;
         isDead = false;
