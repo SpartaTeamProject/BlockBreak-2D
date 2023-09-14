@@ -128,7 +128,7 @@ MonoBehaviour:
   enemyType: 0
   HP: 5
   walkSpeed: 0
-  Exp: 0
+  Exp: 1
   attackDamage: 0
   isDead: 0
   walkTime: 0

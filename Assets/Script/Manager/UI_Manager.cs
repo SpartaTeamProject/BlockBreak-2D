@@ -12,6 +12,7 @@ public class UI_Manager : MonoBehaviour
     public Image image;
     public GameObject player;
     public GameObject Retrybtn;
+    public float realTime;
 
     public float HP_full;
     public float HP;
@@ -43,7 +44,8 @@ public class UI_Manager : MonoBehaviour
 
     void Update()
     {
-        HP -= Time.deltaTime;
+        realTime += Time.deltaTime;
+        HP -= Time.deltaTime + (realTime * 0.00015f);
         image.fillAmount = (HP / HP_full);
 
         if (HP <= 0)

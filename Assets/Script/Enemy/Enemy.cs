@@ -253,7 +253,7 @@ public class Enemy : MonoBehaviour
     {
         if (HP <= 0)
         {
-            UI_Manager.I.HP_Add(10);
+            UI_Manager.I.HP_Add(Exp);
             Instantiate(_effect,transform.position,Quaternion.identity);// 벡터 값을 입력하면 로테이션 값도 함께 넣어줘야함
             isWalking = false;
             isChasing = false;
