@@ -45,7 +45,7 @@ public class UI_Manager : MonoBehaviour
     void Update()
     {
         realTime += Time.deltaTime;
-        HP -= Time.deltaTime + (realTime * 0.00011f);
+        HP -= Time.deltaTime + (realTime * 0.0001f);
         image.fillAmount = (HP / HP_full);
 
         if (HP <= 0)

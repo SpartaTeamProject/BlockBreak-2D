@@ -126,7 +126,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _effect: {fileID: 3024758762457132007, guid: 35ff1cebaa89d4d4bb7868196c4b1c1c, type: 3}
   enemyType: 0
-  HP: 5
+  HP: 1
   walkSpeed: 0
   Exp: 1
   attackDamage: 0

@@ -7,12 +7,12 @@ public class PlayerMovement : MonoBehaviour
 {
     private Player _player;
 
-    private Vector2 _movment = Vector2.zero;//ÃÊ±âÈ­ ±æ°Ô ¾È¾²·Á°í ÀÌ·¸°Ô ÇÔ
+    private Vector2 _movment = Vector2.zero;//ï¿½Ê±ï¿½È­ ï¿½ï¿½ï¿½ ï¿½È¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì·ï¿½ï¿½ï¿½ ï¿½ï¿½
     private Rigidbody2D _rigidbody;
     public Animator spritAnim;
     int speed = 3;
-    float dashPower = 6f;
-    float dashTime = 0.2f;
+    float dashPower = 10f;
+    float dashTime = 0.5f;
 
     private void Awake()
     {

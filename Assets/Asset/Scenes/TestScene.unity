@@ -1572,8 +1572,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4145025682132467827, guid: 76fdaf0c07ad83f4abfc729b43c7c3dc, type: 3}
+      propertyPath: HP
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4145025682132467827, guid: 76fdaf0c07ad83f4abfc729b43c7c3dc, type: 3}
       propertyPath: Exp
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4145025682132467827, guid: 76fdaf0c07ad83f4abfc729b43c7c3dc, type: 3}
       propertyPath: anim
@@ -2098,8 +2102,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7461863483216555861, guid: 1b0174bd588621140b24a96d73b996b0, type: 3}
+      propertyPath: HP
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7461863483216555861, guid: 1b0174bd588621140b24a96d73b996b0, type: 3}
       propertyPath: Exp
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7461863483216555861, guid: 1b0174bd588621140b24a96d73b996b0, type: 3}
       propertyPath: target
@@ -2112,6 +2120,18 @@ PrefabInstance:
     - target: {fileID: 7461863483216555861, guid: 1b0174bd588621140b24a96d73b996b0, type: 3}
       propertyPath: playerREN
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8955251931206935967, guid: 1b0174bd588621140b24a96d73b996b0, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8955251931206935967, guid: 1b0174bd588621140b24a96d73b996b0, type: 3}
+      propertyPath: m_Color.g
+      value: 0.4032709
+      objectReference: {fileID: 0}
+    - target: {fileID: 8955251931206935967, guid: 1b0174bd588621140b24a96d73b996b0, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2549,7 +2569,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bf9bf6e430b54d11a9e2637fc774042, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spwanTime: 5
+  spwanTime: 3
   curTime: 0
   Enemy: {fileID: 5836513555785481073, guid: 1b0174bd588621140b24a96d73b996b0, type: 3}
   spawnPoints:
@@ -2785,7 +2805,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 404869877754842955, guid: 58c8a5270eefba240980397554d6238c, type: 3}
       propertyPath: Exp
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 404869877754842955, guid: 58c8a5270eefba240980397554d6238c, type: 3}
       propertyPath: target
@@ -2798,6 +2818,10 @@ PrefabInstance:
     - target: {fileID: 404869877754842955, guid: 58c8a5270eefba240980397554d6238c, type: 3}
       propertyPath: playerREN
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 404869877754842955, guid: 58c8a5270eefba240980397554d6238c, type: 3}
+      propertyPath: walkSpeed
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3761874284200954107, guid: 58c8a5270eefba240980397554d6238c, type: 3}
       propertyPath: m_Name
@@ -3464,7 +3488,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bf9bf6e430b54d11a9e2637fc774042, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spwanTime: 3
+  spwanTime: 2
   curTime: 0
   Enemy: {fileID: 3761874284200954107, guid: 58c8a5270eefba240980397554d6238c, type: 3}
   spawnPoints:

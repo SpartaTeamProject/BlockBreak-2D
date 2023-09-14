@@ -165,7 +165,7 @@ MonoBehaviour:
   atk: 2
   lifetime: 8
   maxHitCount: 3
-  destinationColor: {r: 0.030437866, g: 0.7169812, b: 0.20966719, a: 1}
+  destinationColor: {r: 1, g: 0.96421814, b: 0, a: 1}
   incrementAtk: 3
   incrementSpd: 2
   decrementLifeTime: 1

@@ -81,7 +81,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 5
   m_Sprite: {fileID: -843442074, guid: daa9a0004d140e3418adf6f035891f4a, type: 3}
-  m_Color: {r: 0.053278446, g: 0, b: 1, a: 1}
+  m_Color: {r: 0.5613208, g: 0.9525555, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -126,9 +126,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _effect: {fileID: 3024758762457132007, guid: 35ff1cebaa89d4d4bb7868196c4b1c1c, type: 3}
   enemyType: 0
-  HP: 5
+  HP: 7
   walkSpeed: 5
-  Exp: 3
+  Exp: 2
   attackDamage: 0
   isDead: 0
   walkTime: 5
