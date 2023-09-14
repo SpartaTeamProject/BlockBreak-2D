@@ -32,7 +32,6 @@ public class UI_Manager : MonoBehaviour
 
     void Start()
     {
-        AudioManager.instance.PlayBGM("Test", true);
         image = hpimage.transform.GetComponent<Image>();
         /*
         if (SceneManager.GetActiveScene().name == "TestScene")
