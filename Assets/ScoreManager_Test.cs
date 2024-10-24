@@ -1,125 +1,129 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections.Generic;
+using System.Linq;
 using System.IO;
+using System;
 
-public class NameInputHandler : MonoBehaviour
+public class GameRanking : MonoBehaviour
 {
-    public InputField nameInputField; // 입력 필드
-    public Text displayNameText;       // 디스플레이 텍스트
-    private Timer timer;               // 타이머 클래스 참조
-    private List<NameEntry> nameEntries; // 이름과 타이머 값을 저장할 리스트
-    private const int maxNames = 5;    // 최대 이름 개수
-    private string filePath;            // JSON 저장 및 로드 경로
+    public InputField nameInputField; // 사용자가 이름을 입력하는 InputField
+    public Button submitButton; // 제출 버튼
+    public Text rankingText; // 순위를 표시할 Text
+    private Timer timer; // 타이머 객체를 위한 변수
+    private List<PlayerRecord> playerRecords = new List<PlayerRecord>(); // 플레이어 기록 리스트
+    private string filePath; // JSON 파일 경로
 
-    private void Start()
+    // Start is called before the first frame update
+    void Start()
     {
-        // 타이머 컴포넌트를 찾아서 연결
-        timer = FindObjectOfType<Timer>();
-        nameEntries = new List<NameEntry>(); // 리스트 초기화
-
-        // 저장할 파일 경로 설정
-        filePath = Path.Combine(Application.persistentDataPath, "nameEntries.json");
-
-        // 기존 항목 로드
-        LoadEntries();
+        filePath = Application.persistentDataPath + "/rankingData5.json"; // JSON 파일 경로 설정
+        nameInputField.characterLimit = 3; // 이름 입력 필드에 최대 3자 제한 추가
+        LoadRankingData(); // 기존에 저장된 랭킹 데이터 불러오기
+        submitButton.onClick.AddListener(SubmitNameAndEndGame); // 버튼 클릭 리스너 추가
+        timer = FindObjectOfType<Timer>(); // 타이머 객체를 찾음
+        DisplayTopFiveRankings(); // 게임 시작 시 랭킹 표시
     }
 
-    public void SubmitName()
+    // 이름을 제출하고 게임이 끝났을 때 시간을 기록하는 함수
+    void SubmitNameAndEndGame()
     {
-        // 입력된 이름 가져오기
-        string name = nameInputField.text;
+        string playerName = nameInputField.text; // 플레이어 이름 가져오기
+        float gameEndTime = timer.GetTime(); // 타이머에서 시간을 가져옴
 
-        // 현재 타이머 값 가져오기
-        float timerValue = timer.GetTime();
+        // 플레이어 기록 저장
+        playerRecords.Add(new PlayerRecord(playerName, gameEndTime));
 
-        // 이름이 비어있지 않으면 리스트에 추가
-        if (!string.IsNullOrEmpty(name))
-        {
-            // 최대 개수에 도달하면 가장 느린 이름 제거
-            if (nameEntries.Count >= maxNames)
-            {
-                RemoveSlowestEntry(); // 가장 느린 이름 제거
-            }
+        // JSON 파일로 저장
+        SaveRankingData();
 
-            nameEntries.Add(new NameEntry(name, timerValue)); // 새 이름과 타이머 값 추가
-            nameEntries.Sort((a, b) => b.timerValue.CompareTo(a.timerValue)); // 내림차순 정렬
-            UpdateDisplayText();
-            SaveEntries(); // 제출 후 항목 저장
-        }
+        // 타이머 멈추고 리셋
+        timer.StopTimer();
+        timer.ResetTimer();
 
-        // 입력 필드 비우기
-        nameInputField.text = string.Empty;
+        // 입력을 한 번만 가능하게 하기 위해 버튼과 입력 필드 비활성화
+        submitButton.interactable = false; // 버튼 비활성화
+        nameInputField.interactable = false; // InputField 비활성화
+
+        // 순위 텍스트 업데이트
+        DisplayTopFiveRankings(); // 새로운 순위를 표시
     }
 
-    private void RemoveSlowestEntry()
+    // 상위 5개 순위를 내림차순으로 정렬하여 출력하는 함수
+    void DisplayTopFiveRankings()
     {
-        int slowestIndex = 0;
+        // 게임 종료 시간을 기준으로 내림차순 정렬 후 상위 5개만 가져오기
+        var topFive = playerRecords.OrderByDescending(record => record.gameEndTime).Take(5).ToList();
 
-        // 가장 느린 타이머 값을 가진 인덱스 찾기
-        for (int i = 1; i < nameEntries.Count; i++)
+        // 출력할 순위 텍스트 작성
+        rankingText.text = "     Top 5 Rankings\n\n";
+        rankingText.text += $"{"순위",-5}{"이름",-10}{" 점수",-15}\n"; // 헤더 추가
+
+        // 이름의 최대 길이에 맞춰서 정렬
+        for (int i = 0; i < topFive.Count; i++)
         {
-            if (nameEntries[i].timerValue > nameEntries[slowestIndex].timerValue)
-            {
-                slowestIndex = i;
-            }
-        }
-
-        // 가장 느린 이름 제거
-        nameEntries.RemoveAt(slowestIndex);
-    }
-
-    private void UpdateDisplayText()
-    {
-        displayNameText.text = ""; // 기존 텍스트 초기화
-        foreach (var entry in nameEntries)
-        {
-            displayNameText.text += entry.name + "! 타이머: " + entry.timerValue.ToString("F2") + " 초\n";
+            rankingText.text += $" {i + 1,-5} {topFive[i].playerName,-10}{topFive[i].gameEndTime:F2}\n";
         }
     }
 
-    // JSON으로 이름 항목 저장
-    private void SaveEntries()
+    // 랭킹 데이터를 JSON 파일로 저장하는 함수
+    void SaveRankingData()
     {
-        string json = JsonUtility.ToJson(new NameEntryList(nameEntries));
-        File.WriteAllText(filePath, json);
+        try
+        {
+            string json = JsonUtility.ToJson(new PlayerRecordList(playerRecords), true); // 리스트를 JSON 형식으로 변환
+            File.WriteAllText(filePath, json); // JSON 데이터를 파일에 저장
+            Debug.Log("Ranking data saved to " + filePath);
+        }
+        catch (Exception e)
+        {
+            Debug.LogError("Failed to save ranking data: " + e.Message);
+        }
     }
 
-    // JSON으로부터 이름 항목 로드
-    private void LoadEntries()
+    // 저장된 랭킹 데이터를 불러오는 함수
+    void LoadRankingData()
     {
         if (File.Exists(filePath))
         {
-            string json = File.ReadAllText(filePath);
-            NameEntryList loadedEntries = JsonUtility.FromJson<NameEntryList>(json);
-            nameEntries = loadedEntries.entries;
-            UpdateDisplayText();
+            try
+            {
+                string json = File.ReadAllText(filePath); // 파일에서 JSON 데이터 읽기
+                PlayerRecordList recordList = JsonUtility.FromJson<PlayerRecordList>(json); // JSON 데이터를 리스트로 변환
+                playerRecords = recordList.playerRecords; // 리스트 업데이트
+                Debug.Log("Ranking data loaded from " + filePath);
+            }
+            catch (Exception e)
+            {
+                Debug.LogError("Failed to load ranking data: " + e.Message);
+            }
         }
     }
+}
 
-    // JSON 직렬화를 위한 이름 항목 리스트 클래스
-    [System.Serializable]
-    private class NameEntryList
+// 플레이어 기록을 저장할 클래스
+[System.Serializable]
+public class PlayerRecord
+{
+    public string playerName; // 플레이어 이름
+    public float gameEndTime; // 게임 종료 시각
+
+    public PlayerRecord(string name, float time)
     {
-        public List<NameEntry> entries;
-
-        public NameEntryList(List<NameEntry> entries)
-        {
-            this.entries = entries;
-        }
+        playerName = name;
+        gameEndTime = time;
     }
+}
 
-    // 이름과 타이머 값을 저장할 클래스
-    [System.Serializable]
-    private class NameEntry
+// JSON 저장을 위한 래퍼 클래스
+[System.Serializable]
+public class PlayerRecordList
+{
+    public List<PlayerRecord> playerRecords; // 플레이어 기록 리스트
+
+    public PlayerRecordList(List<PlayerRecord> records)
     {
-        public string name;
-        public float timerValue;
-
-        public NameEntry(string name, float timerValue)
-        {
-            this.name = name;
-            this.timerValue = timerValue;
-        }
+        playerRecords = records;
     }
 }

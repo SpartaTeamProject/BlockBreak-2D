@@ -1,19 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-
 public class Timer : MonoBehaviour
 {
-    [SerializeField] Text text; // UI 텍스트
-    float time; // 타이머 시간
-    bool isGameOver = false; // 게임 오버 플래그
-    ScoreManager scoreManager; // 점수 매니저
+    [SerializeField] Text text;
+    float time;
+    bool isGameOver = false;
+    ScoreManager scoreManager;
 
     void Start()
     {
-        time = 0; // 시간 초기화
+        time = 0;
         scoreManager = FindObjectOfType<ScoreManager>();
     }
 
@@ -21,22 +17,30 @@ public class Timer : MonoBehaviour
     {
         if (!isGameOver)
         {
-            time += Time.deltaTime; // 시간 증가
-            text.text = time.ToString("F2"); // 텍스트 업데이트
+            time += Time.deltaTime;
+            text.text = time.ToString("F2");
         }
     }
 
     // 타이머 멈추기
     public void StopTimer()
     {
-        isGameOver = true; // 게임 오버 상태로 변경
+        isGameOver = true;
     }
 
-    // 현재 시간을 반환하는 메소드
+    // 타이머 리셋
+    public void ResetTimer()
+    {
+        time = 0;
+        isGameOver = false;
+        text.text = time.ToString("F2");
+    }
+
     public float GetTime()
     {
         return time;
     }
+
     public void EndGame(string playerName)
     {
         isGameOver = true;
